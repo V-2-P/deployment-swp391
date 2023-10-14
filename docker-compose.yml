@@ -2,11 +2,15 @@ version: '3'
 services:
   user-fe-swp391:
     image: ynnub2804/user-fe-swp391
+    ports:
+      - "3000:3000"
     environment:
       - VITE_PORT=3000
 
   admin-fe-swp391:
     image: ynnub2804/admin-fe-swp391
+    ports:
+      - "3000:3000"
     environment:
       - VITE_PORT=3001
 
