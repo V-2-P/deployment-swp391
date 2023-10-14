@@ -13,8 +13,8 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./reverse-proxies.conf:/etc/nginx/default.d/reverse-proxies.conf
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./reserver-proxies.conf:/etc/nginx/conf.d/reserver-proxies.conf
     ports:
       - "80:80"
     depends_on:
