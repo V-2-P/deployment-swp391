@@ -13,11 +13,9 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf 
-      - ./reverse-proxies.conf:/etc/nginx/conf.d/reverse-proxies.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "3000:3000"
-      - "3001:3001"
+      - "80:80"
     depends_on:
       - user-fe-swp391
       - admin-fe-swp391
