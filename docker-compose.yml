@@ -10,7 +10,7 @@ services:
   admin-fe-swp391:
     image: ynnub2804/admin-fe-swp391
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - VITE_PORT=3001
 
