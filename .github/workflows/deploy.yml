@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+    schedule:
+      - cron: '0 11 * * *'
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: SSH deploy
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.SSH_HOST }}
+                username: ${{ secrets.SSH_USER }}
+                password: ${{ secrets.SSH_PASSWORD }}
+                script: |
+                 cd deployment-swp391/
+                 ./deploy.sh
