@@ -15,7 +15,7 @@ services:
       - VITE_PORT=3001
 
   be-swp391:
-    image: phuctth/be-swp391:latest
+    image: ynnub2804/be-swp391
     ports:
       - "8088:8088"
     depends_on:
@@ -32,9 +32,6 @@ services:
       FACEBOOK_SECRET:
       EMAIL: "email"
       EMAIL_PASSWORD: "1234"
-
-
-
   db:
     image: mysql:latest
     restart: unless-stopped
