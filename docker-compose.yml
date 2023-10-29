@@ -44,8 +44,8 @@ services:
       GOOGLE_SECRET:
       FACEBOOK_ID:
       FACEBOOK_SECRET:
-      EMAIL: "vuthase172485@fpt.edu.vn"
-      EMAIL_PASSWORD: "fnwz fqln qhfi cxaq"
+      EMAIL: "EMAIL"
+      EMAIL_PASSWORD: "PASSWORD"
       VERIFY_URL: https://birdfarmshop.techx.id.vn/verify
     volumes:
       - /root/images:/app/uploads
