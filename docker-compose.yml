@@ -1,40 +1,54 @@
 version: '3'
 services:
+  nginx:
+      image: nginx:latest
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/my-app.conf
+      ports:
+        - "80:80"
+      depends_on:
+        - user-fe-swp391
+        - admin-fe-swp391
+        - be-swp391
   user-fe-swp391:
     image: ynnub2804/user-fe-swp391
-    ports:
-      - "3000:3000"
+    restart: unless-stopped
+    tty: true
     environment:
       - VITE_PORT=3000
+      - VITE_API_BASE_URL=https://api.techx.id.vn/api/v1
 
   admin-fe-swp391:
     image: ynnub2804/admin-fe-swp391
-    ports:
-      - "3001:3001"
+    restart: unless-stopped
+    tty: true
     environment:
       - VITE_PORT=3001
+      - VITE_API_BASE_URL=https://api.techx.id.vn/api/v1
 
   be-swp391:
-    image: phuctth/be-swp391:latest
-    ports:
-      - "8088:8088"
+    image: ynnub2804/be-swp391
+    restart: unless-stopped
+    tty: true
     depends_on:
       - db
     environment:
-      SERVER_PORT: 8088
+      SERVER_PORT: 8080
       MYSQL_HOST: db
       MYSQL_USER: root
-      MYSQL_PASSWORD: 1234
+      MYSQL_PASSWORD: Bfs1234
       MYSQL_PORT: 3306
       GOOGLE_ID: 
       GOOGLE_SECRET:
       FACEBOOK_ID:
       FACEBOOK_SECRET:
-      EMAIL: "email"
-      EMAIL_PASSWORD: "1234"
-
-
-
+      EMAIL: "vuthase172485@fpt.edu.vn"
+      EMAIL_PASSWORD: "fnwz fqln qhfi cxaq"
+      VERIFY_URL: https://birdfarmshop.techx.id.vn/verify
+    volumes:
+      - /root/images:/app/uploads
   db:
     image: mysql:latest
     restart: unless-stopped
@@ -43,8 +57,12 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: Bfs1234
       MYSQL_DATABASE: birdfarmshop
       MYSQL_USER: phuctth
-      MYSQL_PASSWORD: 1234
+      MYSQL_PASSWORD: Bfs1234
+    volumes:
+      - mysql-data:/var/lib/mysql
       
+volumes:
+  mysql-data:
