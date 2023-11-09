@@ -6,6 +6,8 @@ services:
       tty: true
       volumes:
         - ./nginx.conf:/etc/nginx/conf.d/my-app.conf
+        - ./logs/nginx:/var/log/nginx
+        - ./nginx-logrotate.conf:/etc/logrotate.d/nginx-logrotate.conf
       ports:
         - "80:80"
       depends_on:
@@ -19,6 +21,8 @@ services:
     environment:
       - VITE_PORT=3000
       - VITE_API_BASE_URL=https://api.techx.id.vn/api/v1
+      - VITE_USER_URL=https://api.techx.id.vn/uploads/users
+      - VITE_BIRD_URL=https://api.techx.id.vn/uploads/birds
 
   admin-fe-swp391:
     image: ynnub2804/admin-fe-swp391
@@ -27,6 +31,8 @@ services:
     environment:
       - VITE_PORT=3001
       - VITE_API_BASE_URL=https://api.techx.id.vn/api/v1
+      - VITE_USER_URL=https://api.techx.id.vn/uploads/users
+      - VITE_BIRD_URL=https://api.techx.id.vn/uploads/birds
 
   be-swp391:
     image: ynnub2804/be-swp391
@@ -44,11 +50,12 @@ services:
       GOOGLE_SECRET:
       FACEBOOK_ID:
       FACEBOOK_SECRET:
-      EMAIL: "EMAIL"
-      EMAIL_PASSWORD: "PASSWORD"
+      EMAIL: "vuthase172485@fpt.edu.vn"
+      EMAIL_PASSWORD: "fnwz fqln qhfi cxaq"
       VERIFY_URL: https://birdfarmshop.techx.id.vn/verify
     volumes:
       - /root/images:/app/uploads
+      - ./logs/be-swp391:/var/log
   db:
     image: mysql:latest
     restart: unless-stopped
